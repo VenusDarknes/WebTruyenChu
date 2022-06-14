@@ -10,6 +10,7 @@ using WebTruyenChu.Models;
 
 namespace WebTruyenChu.Controllers
 {
+    //test commit
     public class truyensController : Controller
     {
         private TruyenChuContext db = new TruyenChuContext();
