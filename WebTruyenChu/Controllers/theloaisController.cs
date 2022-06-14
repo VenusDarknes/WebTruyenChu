@@ -34,7 +34,7 @@ namespace WebTruyenChu.Controllers
             return View(theloai);
         }
 
-
+        //Code cac chuc nang 
         // GET: theloais/Details/5
         public ActionResult Details(int? id)
         {
