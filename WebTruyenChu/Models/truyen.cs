@@ -1,4 +1,4 @@
-namespace WebTruyenChu.Models
+﻿namespace WebTruyenChu.Models
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace WebTruyenChu.Models
         }
 
         [Key]
+        // dùng code first lấy từ cơ sở dữ liệu
         public int matruyen { get; set; }
 
         public int? matheloai { get; set; }
