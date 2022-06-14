@@ -10,7 +10,7 @@ using WebTruyenChu.Models;
 
 namespace WebTruyenChu.Controllers
 {
-    //test commit
+    //test commit 1231231
     public class truyensController : Controller
     {
         private TruyenChuContext db = new TruyenChuContext();
