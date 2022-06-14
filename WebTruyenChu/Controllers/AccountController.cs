@@ -13,6 +13,7 @@ using WebTruyenChu.Models;
 namespace WebTruyenChu.Controllers
 {
     [Authorize]
+    /*authorrize of webtruyenchu*/
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
