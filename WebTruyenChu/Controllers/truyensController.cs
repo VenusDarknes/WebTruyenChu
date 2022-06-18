@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using WebTruyenChu.Models;
+using PagedList;
 
 namespace WebTruyenChu.Controllers
 {
@@ -18,23 +19,18 @@ namespace WebTruyenChu.Controllers
             var truyens = db.truyens.Include(t => t.theloai);
             return View(truyens.ToList());
         }
-        public ActionResult TruyenTheLoai(int? matheloai)
+        public ActionResult TruyenTheLoai(int? page,int? matheloai)
         {
-            HomeModel list = new HomeModel();
-            if (matheloai == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            list.theloais = db.theloais.ToList();
-            list.chuongs = db.chuongs.ToList();
-            list.truyens = db.truyens.Where(n => n.matheloai == matheloai).ToList();
-            if (list.truyens.ToList().Count() == 0)
-            {
-                return HttpNotFound();
-            }
+            ViewBag.matheloai = matheloai;
+            if (page == null) page = 1;
+            var list = (from s in db.truyens select s).Where(n => n.matheloai == matheloai).OrderBy(m => m.ngaydangtruyen);
 
-            return View(list);
+
+            int pageSize = 6;
+            int pageNum = page ?? 6;
+            return View(list.ToPagedList(pageNum, pageSize));
         }
+        
         //public ActionResult TruyenDetails(int? matruyen)
         //{
         //    chuong chap = new chuong();

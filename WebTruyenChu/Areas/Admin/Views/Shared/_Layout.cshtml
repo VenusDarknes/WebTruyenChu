@@ -214,14 +214,14 @@
 
                         <li class="nav-item">
                             <a href="@Url.Action("Index","theloais")" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
+                                <i class="nav-icon fas fa-columns"></i>
                                 <p>
                                     Quản lý thể loại
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","truyens")" class="nav-link">
+                            <a href="@Url.Action("Index","truyenn")" class="nav-link">
                                 <i class="nav-icon fas fa-columns"></i>
                                 <p>
                                     Quản lý truyện
@@ -229,7 +229,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","chuongs")" class="nav-link">
+                            <a href="@Url.Action("Index","chuongg")" class="nav-link">
                                 <i class="nav-icon fas fa-columns"></i>
                                 <p>
                                     Quản lý chương
@@ -265,7 +265,6 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
     <!-- jQuery -->
     <script src="~/Content/admin/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -287,7 +286,7 @@
     @*<script src="~/Content/admin/plugins/jquery-knob/jquery.knob.min.js"></script>*@
     <!-- daterangepicker -->
     @*<script src="~/Content/admin/plugins/moment/moment.min.js"></script>
-    <script src="~/Content/admin/plugins/daterangepicker/daterangepicker.js"></script>*@
+        <script src="~/Content/admin/plugins/daterangepicker/daterangepicker.js"></script>*@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="~/Content/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
@@ -304,6 +303,7 @@
     @*@Scripts.Render("~/bundles/jquery")*@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/~/Content/admin/~/Content/admin/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
 
 </body>
 </html>

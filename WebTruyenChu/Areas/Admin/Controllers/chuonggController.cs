@@ -1,66 +1,50 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebTruyenChu.Models;
 
-
 namespace WebTruyenChu.Areas.Admin.Controllers
 {
-    public class theloaisController : Controller
+    public class chuonggController : Controller
     {
+        // GET: Admin/chuongs
         private TruyenChuContext db = new TruyenChuContext();
 
         // GET: Admin/theloais
         public ActionResult Index()
         {
             var db = new TruyenChuContext();
-            List<theloai> theloais = db.theloais.ToList();
+            List<chuong> chuongs = db.chuongs.ToList();
 
-            return View(theloais);
+            return View(chuongs);
         }
-        //Detail
-        //[HttpGet]
-        //public ActionResult Detail(int id)
-        //{
-        //    var db = new TruyenChuContext();
-        //    var result = db.theloais.Where(n => n.matheloai == id).SingleOrDefault();
-        //    string values = string.Empty;
-
-        //    values = JsonConvert.SerializeObject(result, Formatting.Indented, new JsonSerializerSettings
-        //    {
-        //        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-        //    });
-        //    return Json(values, JsonRequestBehavior.AllowGet);
-        //}
 
         //Create
         [HttpPost]
-        public ActionResult Create(theloai theloai)
+        public ActionResult Create(chuong chuong)
         {
-           
+
             if (ModelState.IsValid)
             {
                 var db = new TruyenChuContext();
-                db.theloais.Add(theloai);
+                chuong.ngaydangchuong = DateTime.Now;
+                db.chuongs.Add(chuong);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "theloais");
+                return RedirectToAction("Index", "chuongg");
             }
 
             return View("Index");
         }
         //Edit
         [HttpGet]
-        public JsonResult GetTheLoaiById(int id)
+        public JsonResult GetChuongById(int id)
         {
             var db = new TruyenChuContext();
-            var result = db.theloais.Where(n => n.matheloai == id).SingleOrDefault();
+            var result = db.chuongs.Where(n => n.machuong == id).SingleOrDefault();
             string values = string.Empty;
 
             values = JsonConvert.SerializeObject(result, Formatting.Indented, new JsonSerializerSettings
@@ -70,16 +54,20 @@ namespace WebTruyenChu.Areas.Admin.Controllers
             return Json(values, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
-        public JsonResult Update(theloai theloai)
+        public JsonResult Update(chuong chuong)
         {
             var db = new TruyenChuContext();
             try
             {
-                var entity = db.theloais.Where(n => n.matheloai == theloai.matheloai).FirstOrDefault();
-                if (entity!=null)
+                var entity = db.chuongs.Where(n => n.machuong == chuong.machuong).FirstOrDefault();
+                if (entity != null)
                 {
-                    entity.tentheloai = theloai.tentheloai;
-                    entity.tenurl = theloai.tenurl;
+                    entity.machuong = chuong.machuong;
+                    entity.matruyen = chuong.matruyen;
+                    entity.tenchuong = chuong.tenchuong;
+                    entity.noidungchuong = chuong.noidungchuong;
+                    entity.ngaydangchuong = chuong.ngaydangchuong;
+                    //entity.ngaydangtruyen = DateTime.Now;
 
                     db.SaveChanges();
 
@@ -111,10 +99,10 @@ namespace WebTruyenChu.Areas.Admin.Controllers
             var db = new TruyenChuContext();
             try
             {
-                var entity = db.theloais.Where(n => n.matheloai == id).FirstOrDefault();
+                var entity = db.chuongs.Where(n => n.machuong == id).FirstOrDefault();
                 if (entity != null)
                 {
-                    db.theloais.Remove(entity);
+                    db.chuongs.Remove(entity);
 
                     db.SaveChanges();
 
@@ -140,10 +128,5 @@ namespace WebTruyenChu.Areas.Admin.Controllers
                 });
             }
         }
-
-     
-
     }
-
-       
 }

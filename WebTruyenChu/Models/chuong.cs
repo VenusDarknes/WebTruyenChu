@@ -3,6 +3,7 @@ namespace WebTruyenChu.Models
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Web.Mvc;
 
     [Table("chuong")]
     public partial class chuong
@@ -17,7 +18,8 @@ namespace WebTruyenChu.Models
         public string tenchuong { get; set; }
 
         [Required]
-        [StringLength(20000)]
+        [StringLength(2000)]
+        [AllowHtml]
         public string noidungchuong { get; set; }
 
         public DateTime? ngaydangchuong { get; set; }

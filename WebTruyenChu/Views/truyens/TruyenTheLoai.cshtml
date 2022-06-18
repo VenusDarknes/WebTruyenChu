@@ -1,4 +1,7 @@
-﻿@model WebTruyenChu.Models.HomeModel
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model PagedList.IPagedList<WebTruyenChu.Models.truyen>
 
 
 @{
@@ -16,7 +19,7 @@
                 <div class="breadcrumb__links">
                     <a href="./index.html"><i class="fa fa-home"></i> Home</a>
                     <a href="./categories.html">Categories</a>
-                    <span>Romance</span>
+                    <span>Thể loại</span>
                 </div>
             </div>
         </div>
@@ -33,7 +36,7 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-6">
                                 <div class="section-title">
-                                    <h4>Romance</h4>
+                                    <h4>Thể loại</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6">
@@ -49,12 +52,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        @foreach (var item in Model.truyens.Take(18))
+                        @foreach (var item in Model)
                         {
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="@item.hinh">
-                                        <div class="ep">Số chương: @Model.chuongs.Where(m => m.matruyen == item.matruyen).Count()</div>
+                                        @*<div class="ep">Số chương: @.</div>*@
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                     </div>
@@ -69,15 +72,18 @@
 
                         }
                     </div>
+                    <div class="product__pagination" style="margin-left:456px">
+                        @Html.PagedListPager(Model, page => Url.Action("TruyenTheLoai", "truyens", new { page, matruyen = ViewBag.matheloai }))
+                    </div>
                 </div>
-                <div class="product__pagination">
+                @*<div class="product__pagination">
                     <a href="#" class="current-page">1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">4</a>
                     <a href="#">5</a>
                     <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                </div>
+                </div>*@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-8">
                 <div class="product__sidebar">
@@ -93,31 +99,31 @@
                         </ul>
                         <div class="filter__gallery">
                             <div class="product__sidebar__view__item set-bg mix day years"
-                                 data-setbg="img/sidebar/tv-1.jpg">
+                                 data-setbg="/Content/img/sidebar/tv-1.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">Boruto: Naruto next generations</a></h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix month week"
-                                 data-setbg="img/sidebar/tv-2.jpg">
+                                 data-setbg="/Content/img/sidebar/tv-2.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix week years"
-                                 data-setbg="img/sidebar/tv-3.jpg">
+                                 data-setbg="/Content/img/sidebar/tv-3.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">Sword art online alicization war of underworld</a></h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix years month"
-                                 data-setbg="img/sidebar/tv-4.jpg">
+                                 data-setbg="/Content/img/sidebar/tv-4.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix day"
-                                 data-setbg="img/sidebar/tv-5.jpg">
+                                 data-setbg="/Content/img/sidebar/tv-5.jpg">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">Fate stay night unlimited blade works</a></h5>
@@ -130,7 +136,7 @@
                         </div>
                         <div class="product__sidebar__comment__item">
                             <div class="product__sidebar__comment__item__pic">
-                                <img src="img/sidebar/comment-1.jpg" alt="">
+                                <img src="/Content/img/sidebar/comment-1.jpg" alt="">
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
@@ -143,7 +149,7 @@
                         </div>
                         <div class="product__sidebar__comment__item">
                             <div class="product__sidebar__comment__item__pic">
-                                <img src="img/sidebar/comment-2.jpg" alt="">
+                                <img src="/Content/img/sidebar/comment-2.jpg" alt="">
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
@@ -156,7 +162,7 @@
                         </div>
                         <div class="product__sidebar__comment__item">
                             <div class="product__sidebar__comment__item__pic">
-                                <img src="img/sidebar/comment-3.jpg" alt="">
+                                <img src="/Content/img/sidebar/comment-3.jpg" alt="">
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
@@ -169,7 +175,7 @@
                         </div>
                         <div class="product__sidebar__comment__item">
                             <div class="product__sidebar__comment__item__pic">
-                                <img src="img/sidebar/comment-4.jpg" alt="">
+                                <img src="/Content/img/sidebar/comment-4.jpg" alt="">
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
@@ -184,6 +190,7 @@
                 </div>
             </div>
         </div>
+        @Html.PagedListPager(Model,i=>Url.Action("TruyenTheLoai","truyens", new {i}))
     </div>
 </section>
 <!-- Product Section End -->
