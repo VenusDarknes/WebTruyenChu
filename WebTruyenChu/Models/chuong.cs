@@ -1,10 +1,8 @@
 namespace WebTruyenChu.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("chuong")]
     public partial class chuong
@@ -19,7 +17,7 @@ namespace WebTruyenChu.Models
         public string tenchuong { get; set; }
 
         [Required]
-        [StringLength(4000)]
+        [StringLength(20000)]
         public string noidungchuong { get; set; }
 
         public DateTime? ngaydangchuong { get; set; }

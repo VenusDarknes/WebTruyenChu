@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebTruyenChu.Models;
 
@@ -38,22 +35,75 @@ namespace WebTruyenChu.Controllers
 
             return View(list);
         }
+        //public ActionResult TruyenDetails(int? matruyen)
+        //{
+        //    chuong chap = new chuong();
+        //    theloai spec = new theloai();
+        //    truyen story = new truyen();
+        //    HomeModel list = new HomeModel();
+        //    if (matruyen == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    list.truyens = db.truyens.Where(n => n.matruyen == matruyen).ToList();
+        //    list.theloais = db.theloais.ToList();
+        //    list.chuongs = db.chuongs.Where(n => n.matruyen == matruyen).ToList();
+        //    if (list.truyens.ToList().Count() == 0)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    story = list.truyens.First();
+        //    spec = list.theloais.FirstOrDefault(n => n.matheloai == story.matheloai);
+        //    chap = list.chuongs.OrderBy(n => n.machuong).First();
+
+        //    ViewBag.chuong1 = chap;
+        //    ViewBag.truyen = story;
+        //    ViewBag.theloaitruyen = spec;
+
+        //    return View(list);
+        //}
         public ActionResult TruyenDetails(int? matruyen)
         {
+            chuongtruyen ct = new chuongtruyen();
+            chuong chap = new chuong();
+            theloai spec = new theloai();
+            truyen story = new truyen();
             HomeModel list = new HomeModel();
             if (matruyen == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            list.theloais = db.theloais.ToList();
-            list.chuongs = db.chuongs.ToList();
             list.truyens = db.truyens.Where(n => n.matruyen == matruyen).ToList();
+            list.theloais = db.theloais.ToList();
+            list.chuongs = db.chuongs.Where(n => n.matruyen == matruyen).ToList();
             if (list.truyens.ToList().Count() == 0)
             {
                 return HttpNotFound();
             }
 
-            return View(list);
+            story = list.truyens.First();
+            spec = list.theloais.FirstOrDefault(n => n.matheloai == story.matheloai);
+            if (list.chuongs.ToList().Count() == 0)
+            {
+                return HttpNotFound();
+            }
+            chap = list.chuongs.OrderBy(n => n.machuong).First();
+
+
+
+            ct.matruyen = story.matruyen;
+            ct.tentheloai = spec.tentheloai;
+            ct.tentruyen = story.tentruyen;
+            ct.hinh = story.hinh;
+            ct.ngaydangtruyen = story.ngaydangtruyen;
+            ct.tacgia = story.tacgia;
+            ct.mota = story.mota;
+            ct.mchuong = list.chuongs;
+            //ViewBag.truyen = story;
+            //ViewBag.theloaitruyen = spec;
+            ViewBag.chuong1 = chap;
+
+            return View(ct);
         }
 
         // GET: truyens/Details/5

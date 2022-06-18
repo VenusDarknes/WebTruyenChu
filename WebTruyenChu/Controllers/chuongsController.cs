@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebTruyenChu.Models;
 
@@ -19,6 +16,27 @@ namespace WebTruyenChu.Controllers
         {
             var chuongs = db.chuongs.Include(c => c.truyen);
             return View(chuongs.ToList());
+        }
+
+        //Chương đọc truyện
+        public ActionResult chuongdoc(int? machuong, int? matruyen)
+        {
+            HomeModel list = new HomeModel();
+            chuong chap = new chuong();
+            if (machuong == null || matruyen == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            list.chuongs = db.chuongs.Where(n => n.matruyen == matruyen).ToList();
+            list.truyens = db.truyens.Where(n => n.matruyen == matruyen).ToList();
+            if (list.truyens.ToList().Count() == 0 || list.chuongs.ToList().Count() == 0)
+            {
+                return HttpNotFound();
+            }
+
+            chap = list.chuongs.OrderBy(n => n.machuong).First();
+
+            return View(chap);
         }
 
         // GET: chuongs/Details/5

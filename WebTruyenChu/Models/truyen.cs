@@ -4,7 +4,6 @@ namespace WebTruyenChu.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("truyen")]
     public partial class truyen
@@ -25,7 +24,7 @@ namespace WebTruyenChu.Models
         public string tentruyen { get; set; }
 
         [Required]
-        [StringLength(500)]
+        [StringLength(1000)]
         public string hinh { get; set; }
 
         [Required]
