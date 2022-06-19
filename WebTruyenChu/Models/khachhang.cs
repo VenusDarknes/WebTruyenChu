@@ -6,8 +6,8 @@ namespace WebTruyenChu.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("khachhang")]
-    public partial class khachhang
+    [Table("KhachHang")]
+    public partial class KhachHang
     {
         [Key]
         public int makh { get; set; }

@@ -19,7 +19,6 @@ namespace WebTruyenChu.Models
         public string tenchuong { get; set; }
 
         [Required]
-        [StringLength(4000)]
         public string noidungchuong { get; set; }
 
         public DateTime? ngaydangchuong { get; set; }

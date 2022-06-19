@@ -25,7 +25,7 @@ namespace WebTruyenChu.Models
         public string tentruyen { get; set; }
 
         [Required]
-        [StringLength(500)]
+        [StringLength(1000)]
         public string hinh { get; set; }
 
         [Required]

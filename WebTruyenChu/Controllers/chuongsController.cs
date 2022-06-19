@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using WebTruyenChu.Models;
+using PagedList;
+using System.Collections.Generic;
 
 namespace WebTruyenChu.Controllers
 {
@@ -15,10 +14,40 @@ namespace WebTruyenChu.Controllers
         private TruyenChuContext db = new TruyenChuContext();
 
         // GET: chuongs
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var chuongs = db.chuongs.Include(c => c.truyen);
+        //    return View(chuongs.ToList());
+        //}
+        public ActionResult Index(int? page, int? matruyen)
         {
-            var chuongs = db.chuongs.Include(c => c.truyen);
-            return View(chuongs.ToList());
+            ViewBag.matruyen = matruyen;
+            if (page == null) page = 1;
+            var chuongs = db.chuongs.Where(n => n.matruyen == matruyen).OrderBy(m => m.machuong);
+            int pageSize = 1;
+            int pageNum = page ?? 1;
+            return View(chuongs.ToPagedList(pageNum, pageSize));
+        }
+
+        //Chương đọc truyện
+        public ActionResult chuongdoc(int? machuong, int? matruyen)
+        {
+            HomeModel list = new HomeModel();
+            chuong chap = new chuong();
+            if (machuong == null || matruyen == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            list.chuongs = db.chuongs.Where(n => n.matruyen == matruyen).ToList();
+            list.truyens = db.truyens.Where(n => n.matruyen == matruyen).ToList();
+            if (list.truyens.ToList().Count() == 0 || list.chuongs.ToList().Count() == 0)
+            {
+                return HttpNotFound();
+            }
+
+            chap = list.chuongs.OrderBy(n => n.machuong).First();
+
+            return View(chap);
         }
 
         // GET: chuongs/Details/5
