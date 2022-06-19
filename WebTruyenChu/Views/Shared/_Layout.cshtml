@@ -37,7 +37,7 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    @Html.Action("MenuPartial","Home")
+    @Html.Action("MenuPartial", "Home")
     <div>
         @RenderBody()
     </div>
@@ -105,6 +105,8 @@
 
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Scripts/script.js"></script>
+
+    @RenderSection("scripts", required: false)
 </body>
 @*<div class="section">
         <div id="the-basics">
