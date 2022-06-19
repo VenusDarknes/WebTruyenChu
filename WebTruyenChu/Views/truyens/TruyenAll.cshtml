@@ -5,9 +5,10 @@
 
 
 @{
-    ViewBag.Title = "TruyenTheLoai";
+    ViewBag.Title = "TruyenAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 <link href="~/Content/css/style.css" rel="stylesheet" />
 
@@ -73,17 +74,17 @@
                         }
                     </div>
                     <div class="product__pagination" style="margin-left:456px">
-                        @Html.PagedListPager(Model, page => Url.Action("TruyenTheLoai", "truyens", new { page, matruyen = ViewBag.matheloai }))
+                        @Html.PagedListPager(Model, page => Url.Action("TruyenAll", "truyens", new { page}))
                     </div>
                 </div>
                 @*<div class="product__pagination">
-                    <a href="#" class="current-page">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#"><i class="fa fa-angle-double-right"></i></a>
-                </div>*@
+                        <a href="#" class="current-page">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#"><i class="fa fa-angle-double-right"></i></a>
+                    </div>*@
             </div>
             <div class="col-lg-4 col-md-6 col-sm-8">
                 <div class="product__sidebar">

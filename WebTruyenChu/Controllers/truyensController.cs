@@ -30,7 +30,17 @@ namespace WebTruyenChu.Controllers
             int pageNum = page ?? 6;
             return View(list.ToPagedList(pageNum, pageSize));
         }
-        
+        public ActionResult TruyenAll(int? page)
+        {
+            if (page == null) page = 1;
+            var list = (from s in db.truyens select s).OrderBy(n=>n.ngaydangtruyen);
+
+
+            int pageSize = 6;
+            int pageNum = page ?? 6;
+            return View(list.ToPagedList(pageNum, pageSize));
+        }
+
         //public ActionResult TruyenDetails(int? matruyen)
         //{
         //    chuong chap = new chuong();

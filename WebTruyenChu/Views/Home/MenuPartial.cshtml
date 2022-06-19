@@ -8,7 +8,7 @@
             <div class="col-lg-2">
                 <div class="header__logo">
                     <a href="~/Home/Index">
-                        <img src="~/Content/img/logo.png">
+                        <img src="~/Content/img/logo2.png">
                     </a>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                         <ul>
                             <li class="active"><a href="~/Home/Index">Trang chủ</a></li>
                             <li>
-                                <a href="./categories.html">Thể loại <span class="arrow_carrot-down"></span></a>
+                                <a href="@Url.Action("TruyenAll","truyens", new { page = 1 })">Thể loại <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     @foreach (var item in Model.theloais)
                                             {
@@ -26,7 +26,7 @@
                                         }
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Our Blog</a></li>
+                            <li><a href="@Url.Action("OurBlog","Home")">Our Blog</a></li>
                             <li><a href="#">Contacts</a></li>
                         </ul>
                     </nav>

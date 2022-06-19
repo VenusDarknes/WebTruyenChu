@@ -2434,6 +2434,8 @@
     <Content Include="Views\truyens\TruyenTheLoai.cshtml" />
     <Content Include="Views\truyens\TruyenDetails.cshtml" />
     <Content Include="Views\chuongs\chuongdoc.cshtml" />
+    <Content Include="Views\truyens\TruyenAll.cshtml" />
+    <Content Include="Views\Home\OurBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

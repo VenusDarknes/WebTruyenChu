@@ -18,6 +18,13 @@ namespace WebTruyenChu.Controllers
             homeModel.chuongs = truyenChuContext.chuongs.ToList();
             return View(homeModel);
         }
+        public ActionResult OurBlog()
+        {
+            homeModel.theloais = truyenChuContext.theloais.ToList();
+            homeModel.truyens = truyenChuContext.truyens.ToList();
+            homeModel.chuongs = truyenChuContext.chuongs.ToList();
+            return View(homeModel);
+        }
         public JsonResult Search()
         {
             var db = truyenChuContext;
